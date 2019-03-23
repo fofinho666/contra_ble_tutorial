@@ -28,7 +28,7 @@ Since the Arduino does not have enough pins available to connect the Bluetooth m
 
 Here's the package wiring in detail:
 
-<img src="images/package.png" alt="Package Wiring" style="width: 500px;">
+<img src="images/package.png" width="500">
 
 We are also going to use the `RAW` Pin (5v) from the Arduino to charge the battery. 
 
