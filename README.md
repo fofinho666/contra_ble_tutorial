@@ -19,10 +19,10 @@ I've started with blanked kit, but if you already build it and are willing to de
 * 3x 2mm diameter washers 
 * 3x 6mm heigh standoffs 
 * 3x M2*8mm head hex socket screws - I used this to screw the printed support 
-* Access to a 3D Printer
+* Access to a 3D Printer - To print the [support structure](https://www.thingiverse.com/thing:3516520)
 
 ## The plan 
-Since the Arduino does not have enough pins available to connect the Bluetooth module, we will to hack and reroute the following pin directly from the microcontroller chip:
+Since the Arduino does not have enough pins available to connect the Bluetooth module, we will need to hack and reroute the following pin directly from the microcontroller chip:
 
 ![Wiring](images/wires.png)
 
@@ -32,12 +32,13 @@ Here's the package wiring in detail:
 
 We are also going to use the `RAW` Pin (5v) from the Arduino to charge the battery. 
 
-The `VCC` Pin (3.3v) will have two roles - To supply power to the Adafruit Bluefruit when charging through USB. To receive power from the battery when the keyboard is wireless.
+The `VCC` Pin (3.3v) will have two roles - To supply power to the Adafruit Bluefruit when charging through USB and to receive power from the battery when the keyboard is wireless.
   
 
 ## Building process
 First I suggest labeling every wire connection to keep track of what is what. Things will get messy in no time. 
 
+**Step 0
 **Step 0.**
 Follow the Contra's [assembly guide](https://cartel.ltd/projects/contra/#assembly) until step 3.
 
@@ -75,9 +76,9 @@ You can put some hot glue on the chip connections so that they don't falloff, th
 
 **Step 5.** Prepare the LiPoly Backpack by adding a Schottky diode on the `BAT` and a wire `GND` pins, like the image shows. **Note that the orientation of the diode!!!** If it's backwards it will not work and you can damage your battery. 
 
-**Step 5a.** Cut the trace that allows the ON/OFF functionality on this module. You can also solder the 500 mA charging rate, it's optional but I recommend it. For more info you can check [Adafruit's Documentation](https://learn.adafruit.com/adafruit-pro-trinket-lipoly-slash-liion-backpack/pinouts)
-
 ![LiPoly Backpack](images/backpack.png) 
+
+**Step 5a.** Cut the trace that allows the ON/OFF functionality on this module. You can also solder the 500 mA charging rate, it's optional but I recommend it. For more info you can check [Adafruit's Documentation](https://learn.adafruit.com/adafruit-pro-trinket-lipoly-slash-liion-backpack/pinouts)
 
 **Step 6.** 
 To prevent any short circuit, put some electrical tape on this spot, the LiPoly Backpack will be on top of it.
