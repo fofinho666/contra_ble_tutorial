@@ -41,7 +41,7 @@ First I suggest labeling every wire connection to keep track of what is what. Th
 **Step 0.**
 Download the STL file of the components support from thingiverse ([link](https://www.thingiverse.com/thing:3516520)) and print it.
 
-You can print in any material as long as it hard enough. I recomend PLA since it's easy to work with.
+You can print it in any colour or material as long as it hard enough to support and glue the modules. I recomend PLA since it's easy to work with.
 
 **Step 1.**
 Follow the Contra's [assembly guide](https://cartel.ltd/projects/contra/#assembly) until step 3.
