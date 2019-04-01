@@ -2,26 +2,27 @@
 
 This tutorial explains how to convert a normal [Contra keyboard](https://cartel.ltd/projects/contra/) into a Bluetooth keyboard. 
 
-I've started with a blanked kit, but if you already built it and are willing to desolder the Pro Micro and all the switches, this is the right tutorial for you!
+I've started with a blanked kit, but if you've already assembled yours and are willing to desolder the Pro Micro and all the switches, this is the right tutorial for you!
 
 ## List of materials 
 
-* [Sparkfun Pro Micro - 3.3V/8MHz](https://www.sparkfun.com/products/12587) - We need to switch from the 5v Pro Micro that comes on your kit to a 3.3v Pro Micro to make the keyboard more energy efficient and suitable to run on a battery.
-* [Adafruit Bluefruit LE SPI Friend - Bluetooth Low Energy (BLE)](https://www.adafruit.com/product/2633) - This BLE module is well supported by the QMK firmware.
-* [Adafruit LiIon/LiPoly Backpack Add-On for Pro Trinket/ItsyBitsy](https://www.adafruit.com/product/2124) - A tiny module that will charge the battery when the keyboard is connected through USB.
-* [Eachine EV800 FPV Goggles Spare Part 3.7V 2000mAh Lipo Battery](https://www.banggood.com/Eachine-EV800-FPV-Goggles-Spare-Part-3_7V-2000mAh-Lipo-Battery-p-1072727.html) - A nice and compact battery that fits on the 3D printed support. You can use whatever Lipo battery you like as long as it fits on the support.
-* [Breadboard-friendly SPDT Slide Switch](https://www.adafruit.com/product/805) - I've used this switch to modulate the support, but you can also use any switch as long as it fits on the support.
-* 1N5817 Schottky diode - We need a diode to prevent the Vcc current (500mA) from flowing into the battery when charging the keyboard.
-* 30AWG Wire - To connect the components and solder into the MEGA32U4 pads directly.
-* Hot glue 
-* Labels 
-* Electrical tape 
-* 3x 2mm diameter washers 
-* 3x 6mm heigh standoffs 
-* 3x M2*6mm head hex socket screws - I used this to screw the printed support 
-* Access to a 3D Printer - To print the [components support](https://www.thingiverse.com/thing:3516520)
+- [Sparkfun Pro Micro - 3.3V/8MHz](https://www.sparkfun.com/products/12587) - We need to switch from the 5v Pro Micro that comes on your kit to a 3.3v Pro Micro to make the keyboard more energy efficient and suitable to run on a battery.
+- [Adafruit Bluefruit LE SPI Friend - Bluetooth Low Energy (BLE)](https://www.adafruit.com/product/2633) - This BLE module is well supported by the QMK firmware.
+- [Adafruit LiIon/LiPoly Backpack Add-On for Pro Trinket/ItsyBitsy](https://www.adafruit.com/product/2124) - A tiny module that will charge the battery when the keyboard is connected through USB.
+- [Eachine EV800 FPV Goggles Spare Part 3.7V 2000mAh Lipo Battery](https://www.banggood.com/Eachine-EV800-FPV-Goggles-Spare-Part-3_7V-2000mAh-Lipo-Battery-p-1072727.html) - A nice and compact battery that fits on the 3D printed support. You can use whatever Lipo battery you like as long as it fits on the support.
+- [Breadboard-friendly SPDT Slide Switch](https://www.adafruit.com/product/805) - I've used this switch to modulate the support, but you can also use any switch as long as it fits on the support.
+- 1N5817 Schottky diode - We need a diode to prevent the Vcc current (500mA) from flowing into the battery when charging the keyboard.
+- 30AWG Wire - To connect the components and solder into the MEGA32U4 pads directly.
+- Hot glue 
+- Labels 
+- Electrical tape 
+- 3x 2mm diameter washers 
+- 3x 6mm heigh standoffs 
+- 3x M2*6mm head hex socket screws - I used this to screw the printed support 
+- Access to a 3D Printer - To print the [components support](https://www.thingiverse.com/thing:3516520)
 
 ## The plan 
+
 Since the Arduino does not have enough pins available to connect the Bluetooth module, we will need to hack and reroute the following pin directly from the microcontroller chip:
 
 ![Wiring](images/wires.png)
@@ -35,6 +36,7 @@ We are also going to use the `RAW` Pin (`5v`) from the Arduino to charge the bat
 The `VCC` Pin (`3.3v`) will have two roles - To supply power to the Adafruit Bluefruit when charging through USB and to receive power from the battery when the keyboard is wireless.
 
 ## Building process
+
 First I suggest labeling every wire connection to keep track of what is what. Things will get messy in no time. 
 
 **Step 0.**
@@ -50,8 +52,8 @@ Remove the 2 headers from the `PIN 14` and `PIN 16` pins that are on the right h
 
 ![Headers](images/headers.png) 
 
-Label this wires `PIN 14` and `PIN 16` from top to bottom. It will be easier to identify which wire is which.
- 
+Label these wires `PIN 14` and `PIN 16` from top to bottom. It will be easier to identify which wire is which.
+
 **Step 3.**
 Follow the Contra's [assembly guide](https://cartel.ltd/projects/contra/#assembly) until step 7B.
 
@@ -67,12 +69,12 @@ After this, solder some 30AWG wires to the `IRQ`, `CS` and `RST` pads. Suggestio
 **Step 4C.** 
 Solder the remaining `5v`, `GND`, `3.3v`, `CLK`, `MISO` and `MOSI`. For the Power and GND pins solder Red and Black wires respectively, following the convention. Don't forget to label them as well.
 
-You should end with something like this:
+You should end up with something like this:
 
 ![Wires from Arduino](images/wires-from-arduino.png) 
 
 **Step 4D.** 
-Put some hot glue on the chip connections so that they won't fall off. They are really delicate!
+Put some hot glue on the chip connections so they won't fall off. They are really delicate!
 
 **Step 5.** 
 Let's move into something easier. Prepare the ON/OFF switch by soldering two wires into its pins, and cutting the extra pin. You won't need it.
@@ -80,7 +82,7 @@ Let's move into something easier. Prepare the ON/OFF switch by soldering two wir
 ![Switch](images/switch.png) 
 
 **Step 6.** 
-Prepare the LiPoly Backpack by adding a Schottky diode on its `VBAT` terminal. **Note the orientation of the diode!!! The strip on the diode should not be facing the module. If backward this will NOT work and you'll probably damage your components**. 
+Prepare the LiPoly Backpack by adding a Schottky diode on its `VBAT` terminal. **Note the orientation of the diode!!! The strip on the diode should not be facing the module. If it's backwards this will NOT work and you'll probably damage your components**. 
 
 Add wires to the end of the diode and to the `GND` pin, like the image shows.   
 
